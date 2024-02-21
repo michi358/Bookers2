@@ -1,0 +1,44 @@
+<!--ユーザーの詳細-->
+<h2>User info</h2>
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <table>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name%></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </table>
+</div>
+
+<!--編集画面へのリンク-->
+<%= link_to 'リンクアイコン',edit_user_path(@user.id) %>
+
+<!--ユーザーの投稿一覧-->
+<h2>Books</h2>
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @books.each do | book| %>
+  <tr>
+    <td> 
+      <%= image_tag @user.get_profile_image(100,100) %>
+    </td>
+    <td><%= book.title %></td>
+    <td><%= book.body %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+
