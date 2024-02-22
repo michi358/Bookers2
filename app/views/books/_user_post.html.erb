@@ -1,0 +1,29 @@
+<!--User情報-->
+<h2>User info</h2>
+<div>
+  <%= image_tag book.user.get_profile_image(100,100) %>
+  <table>
+    <tr>
+      <th>name</th>
+      <th><%= book.user.name%></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= book.user.introduction %></th>
+    </tr>
+  </table>
+</div>
+
+<!--編集画面へのリンク-->
+<%= link_to 'リンクアイコン',edit_user_path(current_user.id) %>
+
+
+<!--投稿フォーム-->
+<h2>New book</h2>
+<%= form_with model: book do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>

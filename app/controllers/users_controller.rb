@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  # url users users_path  
   def index
     @users = User.all
     
