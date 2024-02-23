@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   #url users/id user_path(current_user.id)
-  before_action :is_matching_login_user, only:[:edit,:update]
+  before_action :is_matching_login_user, only: [:edit, :update]
   
   def show
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
     @book.user_id = current_user.id
+    
 
   end
 

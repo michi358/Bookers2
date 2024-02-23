@@ -1,20 +1,25 @@
-<!--userinfo/投稿フォーム-->
-<%= render 'books/user_post', book: @book %>
-
-<!--投稿詳細-->
-<h2>Book detail</h2>
-<div>
-  <table>
-    <tr>
-      <td>
-        <%= image_tag @book_show.user.get_profile_image(100,100)%><br>
-        <%= link_to @book_show.user.name,user_path(@book_show.user.id) %>
-      </td>
-      <td><%= link_to @book_show.title,book_path(@book_show.id) %></td>
-      <td><%= @book_show.body %></td>
-      <% if @book_show.user == current_user %>
-      <td><%= link_to "Edit",edit_book_path(@book_show.id)%></td>
-      <td><%= link_to "Destroy", book_path(@book_show.id), method: :delete %></td>
-      <% end %>
-    </tr>
+<div class= "container">
+  <div class= "row" >
+    <!--userinfo/投稿フォーム-->
+    <%= render 'books/user_post', book: @book %>
+    
+    <!--投稿詳細-->
+    <div class="col-md-8 offset-1">
+      <h2>Book detail</h2>
+        <table class="table">
+          <tr>
+            <td>
+              <%= image_tag @book_show.user.get_profile_image(100,100)%><br>
+              <%= link_to @book_show.user.name,user_path(@book_show.user.id) %>
+            </td>
+            <td><%= link_to @book_show.title,book_path(@book_show.id) %></td>
+            <td><%= @book_show.body %></td>
+            <% if @book_show.user == current_user %>
+            <td><%= link_to "Edit",edit_book_path(@book_show.id),class: "btn btn-success" %></td>
+            <td><%= link_to "Destroy", book_path(@book_show.id), method: :delete ,class:"btn btn-danger" %></td>
+            <% end %>
+          </tr>
+        </table>
+    </div>
+  </div>
 </div>
