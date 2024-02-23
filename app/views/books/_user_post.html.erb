@@ -1,3 +1,16 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+<!--投稿のエラーメッセージ-->
+<% if book.errors.any? %>
+  <%= book.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <!--User情報-->
 <h2>User info</h2>
 <div class="contenr">
@@ -21,6 +34,7 @@
 
 <!--投稿フォーム-->
 <h2>New book</h2>
+
 <%= form_with model: book do |f| %>
   <h4>Title</h4>
   <%= f.text_field :title %>
