@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,39 +12,73 @@
   </head>
 
   <body>
-    <span>
-      <%= link_to "Bookers",root_path %>
-    </span>
-    <% if user_signed_in? %>
-      <li>
-        <!--users#show-->
-        <%= link_to "Home", user_path(current_user.id) %>
-      </li>
-      <li>
-        <!--users#index-->
-        <%= link_to "Users", users_path %>
-      </li>
-      <li>
-        <!--books#index-->
-        <%= link_to "Books", books_path %>
-      </li>
-      <li>
-        <%= link_to "Log out",destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "Home", root_path  %>
-      </li>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "Log in", new_user_session_path %>
-      </li>
-    <%end%>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <%= link_to "Bookers",root_path, class: "navbar-brand" %>
+          <!--このbuttonはハンバーガーメニューのところ-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+                <!--users#show-->
+              <li class="nav-item">
+                <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-house"></i>Home
+                <% end %>
+              </li>
+                
+                <!--%= link_to "Home", user_path(current_user.id), class: 'nav-link text-dark' -->
+              <li class="nav-item">
+                <!--users#index-->
+                <%= link_to users_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-users"></i>Users
+                <% end %>
+              </li>
+                <!--books#index-->
+                <li class="nav-item">
+                <%= link_to books_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-book-open"></i>Books
+                <% end %>
+              </li>
+              <li class="nav-itme">
+                <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-right-from-bracket"></i>Log out
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to root_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-house"></i>Home
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to about_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-link"></i>About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-user-plus"></i>Sign up
+                <% end %>
+              </li>
+              <li class="nav-itme">
+                <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-right-to-bracket"></i>Log in
+                <% end %>
+              </li>
+            <%end%>
+          </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
+    <footer>
+      <div class="row justify-content-center">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </footer>
   </body>
 </html>

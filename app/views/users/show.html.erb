@@ -1,21 +1,5 @@
-<!--User info-->
-<h2>User info</h2>
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <table>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name%></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </table>
-</div>
-
-<!--編集画面へのリンク-->
-<%= link_to 'リンクアイコン',edit_user_path(@user.id) %>
+<!--User info,投稿フォーム-->
+<%= render 'books/user_post', book: @book %>
 
 <!--ユーザーの投稿一覧-->
 <h2>Books</h2>
