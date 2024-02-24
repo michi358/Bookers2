@@ -1,35 +1,36 @@
-<div>
-  <%= flash[:notice] %>
-</div>
-<!--投稿のエラーメッセージ-->
-<% if book.errors.any? %>
-  <%= book.errors.count %>error prohibited this obj from being saved:
-  <ul>
-    <% book.errors.full_messages.each do |message| %>
+<div class="container px-5">
+  <div id="errors_explanation">
+    <% if @book.errors.any? %>
+    <h3><%= @book.errors.count %>error prohibited this obj from being saved:</h3>
+    <ul>
+    <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
-  </ul>
-<% end %>
-
+    </ul>
+    <% end %>
+  </div>
+</div>
+      
 <!--User情報-->
 <div class= "col-md-3" >
   <h2>User info</h2>
     
     <table class="table">
-      <tr><%= image_tag book.user.get_profile_image(100,100) %></tr>
+      <tr><%= image_tag user.get_profile_image(100,100) %></tr>
       <tr>
         <th>name</th>
-        <th><%= book.user.name%></th>
+        <th><%= user.name%></th>
       </tr>
       <tr>
         <th>introduction</th>
-        <th><%= book.user.introduction %></th>
+        <th><%= user.introduction %></th>
       </tr>
+
     </table>
   
   <!--編集画面へのリンク-->
   
-    <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-secondary w-100" do %>
+    <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary w-100" do %>
       <i class= "fa-solid fa-user-gear"></i>
     <% end %>
   
@@ -47,6 +48,6 @@
       <div class="form-group">
         <%= f.submit 'Create Book', class:"btn btn-success" %>
       </div>
-        <% end %>
+    <% end %>
   
 </div>

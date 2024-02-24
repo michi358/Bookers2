@@ -1,10 +1,10 @@
-<div class= "container">
+<div class= "container px-5">
   <div class= "row" >
     <!--userinfo/投稿フォーム-->
-    <%= render 'books/user_post', book: @book %>
+    <%= render partial: 'books/user_post', locals: { user: @user, book: @book } %>
     
     <!--投稿詳細-->
-    <div class="col-md-8 offset-1">
+    <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
         <table class="table">
           <tr>
