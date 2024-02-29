@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :is_matching_login_user, only:[:edit,:update]
-  
+
   def new
     @book = Book.new
   end
@@ -15,7 +15,7 @@ class BooksController < ApplicationController
     else
       @user = current_user
       render :index
-      
+
     end
   end
 
@@ -25,14 +25,12 @@ class BooksController < ApplicationController
     @books = Book.all
     @user = current_user
   end
-
-    
-
+  
   def show
     @book = Book.new
     @book_show = Book.find(params[:id])
     @user = @book_show.user
-    
+
   end
 
   def destroy
@@ -44,9 +42,9 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
-   
+
   end
-  
+
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
