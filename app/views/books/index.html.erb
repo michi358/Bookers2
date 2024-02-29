@@ -12,6 +12,8 @@
             <th></th>
             <th>Title</th>
             <th>Opinion</th>
+            <!--いいね、コメントの空白-->
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -31,6 +33,9 @@
         
             <td>
               <%= render 'books/favorite', book: book %>
+            </td>
+            <td>
+              <p>コメント数:<%=book.book_comments.count%></p>
             </td>
           </tr>
         <% end %>
