@@ -1,11 +1,7 @@
-<div class= "container px-5">
-  <div class= "row" >
-<!--User info,投稿フォーム-->
-<%= render partial: 'books/user_post', locals: { user: @user, book: @book } %>
-
-<!--ユーザー一覧-->
+<h2>Follow Users</h2>
+<% if @users.exists? %>
+  <!--ユーザー一覧-->
     <div class="col-md-8 offset-md-1">
-      <h2>Users</h2>
       <table class="table">
         <thead>
           <tr>
@@ -42,4 +38,6 @@
     </div>
   </div>
 </div>
-
+<% else%>
+  <p>ユーザーはいません</p>
+<% end %>

@@ -6,6 +6,24 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  
+  # フォロー機能
+  has_many :active_relationships, class_name: "Relationship", foreign_key:"follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key:"followed_id", dependent: :destroy
+  has_many :followings, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+  # ユーザーをフォローする
+  def follow(user)
+    active_relationships.create(followed_id: user.id)
+  end
+  # ユーザーのフォローを外す
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
+  end
+  # フォロー確認をする
+  def following?(user)
+    followings.include?(user)
+  end
 
   has_one_attached :profile_image
 
