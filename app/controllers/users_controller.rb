@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #url users/id user_path(current_user.id)
+  before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
   
   def show
