@@ -17,22 +17,22 @@
             <td id="favorite_btn_<%= @book.id %>">
               <%= render 'favorites/btn', book: @book %>
             </td>
-            <td><p>コメント数:<%=@book.book_comments.count%></p></td>
+          <!--コメント数表示-->
+            <td id="comment_counter">
+              <p><%= render 'book_comments/counter',book: @book %></p>
+            </td>
             <% if @book.user == current_user %>
             <td><%= link_to "Edit",edit_book_path(@book.id),class: "btn btn-success" %></td>
             <td><%= link_to "Destroy", book_path(@book.id), method: :delete ,class:"btn btn-danger" %></td>
             <% end %>
           </tr>
         </table>
-    <!--コメントの表示-->
-    <%= render 'book_comments/index', book: @book %>
+    <!--コメントの一覧表示-->
+      <div id="comment_index">
+      <%= render 'book_comments/index', book: @book %>
+      </div>
     <!--コメントの投稿フォーム-->
-    <div class="comment-post">
-      <%= form_with model: [@book, @book_comment] do |f| %>
-      <%= f.text_area :comment %>
-      <p><%= f.submit "送信" %></p>
-      <% end %>
-    </div>
+      <%= render partial: 'book_comments/form', locals: {book: @book, book_comment: @book_comment }%>
 
     </div>
 

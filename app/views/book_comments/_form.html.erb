@@ -1,0 +1,6 @@
+<div class="comment-post">
+  <%= form_with model: [book, book_comment], local: false do |f| %>
+  <%= f.text_area :comment, id: "comment_textarea" %>
+  <p><%= f.submit "送信" %></p>
+  <% end %>
+</div>
