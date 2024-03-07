@@ -1,6 +1,8 @@
 class Book < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  # いいね順に並び替えるため
+  has_many :favorited_users, through: :favorites, source: :user
   has_many :book_comments, dependent: :destroy
   
   validates :title, presence: true

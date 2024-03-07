@@ -11,7 +11,7 @@ class BookCommentsController < ApplicationController
   def destroy
     @comment = BookComment.find(params[:id]).destroy
     # redirect_back(fallback_location: root_path)　非同期通信化のため
-end
+  end
   
   private
   
