@@ -11,7 +11,7 @@
       |<%= link_to '古い順', books_path(old: "true") %>
       |<%= link_to '評価の高い順', books_path(star_count: "true") %>
         
-      <%= render 'index', books: @books %>
+      <%= render 'index', books: @books,tag_list: @tag_list %>
     </div>
   </div>
 </div>

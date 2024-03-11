@@ -9,13 +9,14 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    tag_list = params[:book][:tag_name].split(nil)
     if @book.save
+      @book.save_tag(tag_list)
       flash[:notice] = "You have created book successfully."
        redirect_to book_path(@book.id)
     else
       @user = current_user
       render :index
-
     end
   end
 
@@ -42,16 +43,21 @@ class BooksController < ApplicationController
     else
      @books = Book.all
     end
+    # タグを取得するコード
+    @tag_list = Tag.all
+    
   end
   
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
+    @book_tags = @book.tags
     @user = @book.user
     @book_comment = BookComment.new
     # 閲覧数を増やす
     @book.increment!(:view_count)
-
+    # タグを取得するコード
+    @tag_list = Tag.all
   end
 
   def destroy
@@ -79,7 +85,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :image, :star)
+    params.require(:book).permit(:title, :body, :image, :star,:contet)
   end
 
   def is_matching_login_user
