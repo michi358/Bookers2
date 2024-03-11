@@ -31,6 +31,10 @@
               <!--コメント数表示-->
               <p><%= render 'book_comments/counter',book: book %></p>
             </td>
+            <!--５星評価の表示-->
+            <td>
+              <%= render "books/static_rate", book: book %>
+            </td>
           </tr>
         <% end %>
         </tbody>

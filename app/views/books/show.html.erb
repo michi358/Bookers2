@@ -21,7 +21,11 @@
             <td id="comment_counter">
               <p><%= render 'book_comments/counter',book: @book %></p>
             </td>
-            <!--閲覧数の-->
+            <!--５星評価の表示-->
+            <td>
+              <%= render "books/static_rate", book: @book %>
+            </td>
+            <!--閲覧数の表示-->
             <td>閲覧数: <%= @book.view_count %></td>
             <% if @book.user == current_user %>
             <td><%= link_to "Edit",edit_book_path(@book.id),class: "btn btn-success" %></td>
