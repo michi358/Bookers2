@@ -1,9 +1,9 @@
 <div class="container px-5">
   <div id="errors_explanation">
-    <% if @book.errors.any? %>
-    <h3><%= @book.errors.count %>error prohibited this obj from being saved:</h3>
+    <% if book.errors.any? %>
+    <h3><%= book.errors.count %>error prohibited this obj from being saved:</h3>
     <ul>
-    <% @book.errors.full_messages.each do |message| %>
+    <% book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
     </ul>
@@ -44,19 +44,8 @@
       <% end %>
     <% end %>
 
-    <% unless user.id == current_user.id %>
-      <% if (current_user.following? user) && (user.following? current_user)  %>
-      <% if isRoom == true %>
-        <p class="user-show-room"><a href="/rooms/<%= roomId %>" class="btn mt-1 btn-primary ">chatへ</a>
-      <% else %>
-        <%= form_with model: room do |f| %>
-          <%= fields_for entry do |e| %>
-            <%= e.hidden_field :user_id, value: user.id %>
-        <% end %>
-        <%= f.submit "chatを始める", class:"btn mt-1 btn-primary user-show-chat"%>
-        <% end %>
-      <% end %>
-      <% end %>
+    <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+       <%= link_to 'chatを始める', message_path(user.id), class: "ml-3" %>
     <% end %>
 
   </div>
