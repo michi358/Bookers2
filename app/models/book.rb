@@ -40,12 +40,12 @@ class Book < ApplicationRecord
     new_tags = sent_tags - current_tags
 
     old_tags.each do |old|
-      self.post_tags.delete Tag.find_by(tag_name: old)
+      self.tags.delete Tag.find_by(tag_name: old)
     end
 
     new_tags.each do |new|
       new_book_tag = Tag.find_or_create_by(tag_name: new)
-      self.book_tags << new_book_tag
+      self.tags << new_book_tag
     end
   end
   

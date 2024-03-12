@@ -56,8 +56,7 @@ class BooksController < ApplicationController
     @book_comment = BookComment.new
     # 閲覧数を増やす
     @book.increment!(:view_count)
-    # タグを取得するコード
-    @tag_list = Tag.all
+   
   end
 
   def destroy
@@ -80,6 +79,13 @@ class BooksController < ApplicationController
     else
       render :edit
     end
+    
+    def search
+    @tag_list = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
+    @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
+    @posts = @tag.posts.all           #クリックしたタグに紐付けられた投稿を全て表示
+    end
+    
   end
 
   private

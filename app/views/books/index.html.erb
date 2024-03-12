@@ -6,12 +6,12 @@
     <!--投稿一覧-->
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <!--並び替えをソートするためのリンク-->
+      <!--並び替えの表示-->
       <%= link_to '新しい順', books_path(latest: "true") %>
       |<%= link_to '古い順', books_path(old: "true") %>
       |<%= link_to '評価の高い順', books_path(star_count: "true") %>
         
-      <%= render 'index', books: @books,tag_list: @tag_list %>
+        <%= render 'index', books: @books %>
     </div>
   </div>
 </div>

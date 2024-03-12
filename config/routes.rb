@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
   
   resources :messages, only:[:create,:show,:destroy]
- 
+  resources :tags do
+    get 'posts', to: 'books#search'
+  end
   
   get 'search',to: 'searches#search'
   
